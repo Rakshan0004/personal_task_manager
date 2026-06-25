@@ -9,6 +9,7 @@ import com.personal.taskmanager.dtos.UserRequestDTO;
 import com.personal.taskmanager.dtos.UserResponseDTO;
 import com.personal.taskmanager.services.UserService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -19,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/add")
-    public UserResponseDTO createUser(@RequestBody UserRequestDTO dto){
+    public UserResponseDTO createUser(@Valid @RequestBody UserRequestDTO dto){
         return userService.createuser(dto);
     }
 

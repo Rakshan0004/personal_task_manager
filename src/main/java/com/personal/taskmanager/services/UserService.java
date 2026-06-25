@@ -10,11 +10,16 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserService{
+public class UserService {
 
     private final UserRepository userRepository;
 
     public UserResponseDTO createuser(UserRequestDTO dto){
+        
+        if (userRepository.existsByEmail(dto.getEmail())) {
+            throw new RuntimeException("Email is already registered");
+        }
+
         User user = User.builder()
                 .name(dto.getName())
                 .email(dto.getEmail())

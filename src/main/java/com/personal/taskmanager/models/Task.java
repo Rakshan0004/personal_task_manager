@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Task {
 
     @Id
@@ -25,6 +26,7 @@ public class Task {
 
     private String description;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     private Status status = Status.PENDING;
 

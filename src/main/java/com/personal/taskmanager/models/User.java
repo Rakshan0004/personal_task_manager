@@ -32,6 +32,7 @@ public class User {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Task> tasks = new ArrayList<>();
 }

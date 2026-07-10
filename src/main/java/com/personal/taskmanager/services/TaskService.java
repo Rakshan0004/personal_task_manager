@@ -8,6 +8,7 @@ import com.personal.taskmanager.models.Task;
 import com.personal.taskmanager.models.User;
 import com.personal.taskmanager.repository.TaskRepository;
 import com.personal.taskmanager.repository.UserRepository;
+import com.personal.taskmanager.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -21,7 +22,7 @@ public class TaskService{
     public TaskResponseDTO createTask(TaskRequestDTO task){
 
         User user = userRepository.findById(task.getUserId())
-        .orElseThrow(() -> new RuntimeException("User not found"));
+        .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + task.getUserId()));
 
 
         Task newTask = Task.builder()
